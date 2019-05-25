@@ -52,6 +52,18 @@ where `ssid` name of network  `wpa_passphrase` password
 
 set ip `10.10.0.1` to `wlan0` driver !!!`IMPORTANT`
 
+change dhcp default settings
+
+> sudo nano /etc/default/isc-dhcp-server
+
+```
+INTERFACESv4="wlan0 eth0"
+INTERFACESv6="wlan0 eth0"
+
+```
+
+Restrart raspi
+> sudo reboot
 
 > sudo ifconfig wlan0 10.10.0.1
 
@@ -70,6 +82,15 @@ to make persistent
 add or eidt these following line
 
 ```
+auto lo
+iface lo inet loopback
+
+iface eth0 inet manual
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
 auto wlan0
 iface wlan0 inet static
 address 10.10.0.1
@@ -91,6 +112,6 @@ add this line to sysctl.conf
 > sudo nano /etc/sysctl.conf
 
 ```
-net.ipv4.ip_forward = 0
+net.ipv4.ip_forward = 1
 
 ```
