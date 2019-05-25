@@ -116,7 +116,8 @@ net.ipv4.ip_forward = 1
 
 ```
 
-
+## For raspi 3
+- https://www.youtube.com/watch?v=XgcDipALFOc
 
 sudo apt update
 
