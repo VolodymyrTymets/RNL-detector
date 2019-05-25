@@ -40,11 +40,11 @@ driver=nl80211
 ssid=RLN         
 hw_mode=g
 channel=11
-wpa=1
-wpa_passphrase=12345         
-wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP CCMP
-wpa_ptk_rekey=600
+#wpa=1
+#wpa_passphrase=12345         
+#wpa_key_mgmt=WPA-PSK
+#wpa_pairwise=TKIP CCMP
+#wpa_ptk_rekey=600
 macaddr_acl=0
 
 ```
@@ -58,3 +58,39 @@ set ip `10.10.0.1` to `wlan0` driver !!!`IMPORTANT`
 restart http server
 
 > sudo /etc/init.d/isc-dhcp-server restart
+
+-d is for debug mode so you can see if any errors appear
+
+> sudo hostapd -d /etc/hostapd/hostapd.conf
+
+to make persistent
+
+> sudo nano /etc/network/interfaces
+
+add or eidt these following line
+
+```
+auto wlan0
+iface wlan0 inet static
+address 10.10.0.1
+netmask 255.255.255.0
+```
+
+
+> sudo nano /etc/rc.local
+
+
+add these lines
+
+```
+hostapd -B /etc/hostapd/hostapd.conf
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
+add this line to sysctl.conf
+> sudo nano /etc/sysctl.conf
+
+```
+net.ipv4.ip_forward = 0
+
+```
