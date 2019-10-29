@@ -8,3 +8,8 @@ sudo apt install network-manager network-manager-gnome openvpn \openvpn-systemd-
 sudo apt purge openresolv dhcpcd5
 
 sudo ln -sf /lib/systemd/resolv.conf /etc/resolv.conf
+
+
+Address: 10.10.10.10
+Mask: 22
+Chanel: 10.10.10.10
