@@ -5,8 +5,8 @@ sudo apt install network-manager network-manager-gnome openvpn \openvpn-systemd-
 sudo apt purge openresolv dhcpcd5
 
 # git istall
+sudo apt-get update
 sudo apt-get install git-core
-sudo apt-get install nodejs
 sudo apt-get install npm
 sudo npm install -g n
 sudo n 10.15.3
